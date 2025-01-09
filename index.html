@@ -249,27 +249,15 @@
                 <div class="score-levels">
                     <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
                     <div id="score-ranges">
-                        <p><strong>Elite (4,200+)</strong></p>
-                        <p>400m reps: 60-95 seconds</p>
-                        <p>7k tempo: 25:00-35:00</p>
-                        <p>Weekly distance: 60km+</p>
+                        <p><strong>Elite (4,500+)</strong></p>
                         <br>
-                        <p><strong>Strong (3,400-4,200)</strong></p>
-                        <p>400m reps: 95-125 seconds</p>
-                        <p>7k tempo: 35:00-45:00</p>
-                        <p>Weekly distance: 40-60km</p>
+                        <p><strong>Strong (3,600-4,500)</strong></p>
                         <br>
-                        <p><strong>Solid (2,600-3,400)</strong></p>
-                        <p>400m reps: 125-155 seconds</p>
-                        <p>7k tempo: 45:00-55:00</p>
-                        <p>Weekly distance: 30-40km</p>
+                        <p><strong>Solid (2,800-3,600)</strong></p>
                         <br>
-                        <p><strong>Building (1,800-2,600)</strong></p>
-                        <p>400m reps: 155-185 seconds</p>
-                        <p>7k tempo: 55:00-65:00</p>
-                        <p>Weekly distance: 20-30km</p>
+                        <p><strong>Building (2,000-2,800)</strong></p>
                         <br>
-                        <p><strong>Starting (0-1,800)</strong></p>
+                        <p><strong>Starting (0-2,000)</strong></p>
                         <p>Focus on consistent training and gradual improvement</p>
                         <p>Aim for completing the distances at any pace</p>
                         <p>Build up weekly distance gradually</p>
@@ -349,10 +337,10 @@
             
             // Update category text
             let category = '';
-            if (totalScore >= 4200) category = 'Elite';
-            else if (totalScore >= 3400) category = 'Strong';
-            else if (totalScore >= 2600) category = 'Solid';
-            else if (totalScore >= 1800) category = 'Building';
+            if (totalScore >= 4500) category = 'Elite';
+            else if (totalScore >= 3600) category = 'Strong';
+            else if (totalScore >= 2800) category = 'Solid';
+            else if (totalScore >= 2000) category = 'Building';
             else category = 'Starting';
             
             document.getElementById('category-text').textContent = category;
