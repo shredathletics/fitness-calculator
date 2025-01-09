@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+400m<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -249,13 +249,13 @@
                 <div class="score-levels">
                     <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
                     <div id="score-ranges">
-                        <p><strong>Elite (4,500+)</strong></p>
+                        <p><strong>Elite (4,800+)</strong></p>
                         <br>
-                        <p><strong>Strong (3,600-4,500)</strong></p>
+                        <p><strong>Strong (3,800-4,800)</strong></p>
                         <br>
-                        <p><strong>Solid (2,800-3,600)</strong></p>
+                        <p><strong>Solid (2,900-3,800)</strong></p>
                         <br>
-                        <p><strong>Building (2,000-2,800)</strong></p>
+                        <p><strong>Building (2,000-2,900)</strong></p>
                         <br>
                         <p><strong>Starting (0-2,000)</strong></p>
                         <p>Focus on consistent training and gradual improvement</p>
@@ -310,7 +310,7 @@
             const adjustedMaxRepTime = 230;
             let repScore;
             if (repTime <= adjustedMinRepTime) {
-                repScore = 5000;  // Perfect score for very fast times
+                repScore = 5000;
             } else {
                 repScore = Math.max(0, Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000));
             }
@@ -321,13 +321,21 @@
             const adjustedMaxTempoTime = 5400;
             let tempoScore;
             if (tempoTime <= adjustedMinTempoTime) {
-                tempoScore = 5000;  // Perfect score for very fast times
+                tempoScore = 5000;
             } else {
                 tempoScore = Math.max(0, Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000));
             }
             
-            // Calculate total score
-            let totalScore = Math.round((distanceScore + repScore + tempoScore) / 3);
+            // Calculate total score using a weighted geometric mean
+            // This ensures all metrics need to be good for a high score
+            const weightedScore = Math.pow(
+                Math.pow(distanceScore, 0.33) * 
+                Math.pow(repScore, 0.33) * 
+                Math.pow(tempoScore, 0.33),
+                1.2  // Power > 1 makes it harder to get high scores
+            );
+            
+            let totalScore = Math.round(weightedScore);
             
             // Ensure score stays within reasonable bounds
             totalScore = Math.max(0, Math.min(10000, totalScore));
@@ -335,15 +343,30 @@
             // Update score and category
             document.getElementById('final-score').textContent = totalScore.toLocaleString();
             
-            // Update category text
+            // Update category text with higher thresholds
             let category = '';
-            if (totalScore >= 4500) category = 'Elite';
-            else if (totalScore >= 3600) category = 'Strong';
-            else if (totalScore >= 2800) category = 'Solid';
+            if (totalScore >= 4800) category = 'Elite';
+            else if (totalScore >= 3800) category = 'Strong';
+            else if (totalScore >= 2900) category = 'Solid';
             else if (totalScore >= 2000) category = 'Building';
             else category = 'Starting';
-            
-            document.getElementById('category-text').textContent = category;
+
+            // Update the score ranges display
+            const scoreRanges = document.getElementById('score-ranges');
+            scoreRanges.innerHTML = `
+                <p><strong>Elite (4,800+)</strong></p>
+                <br>
+                <p><strong>Strong (3,800-4,800)</strong></p>
+                <br>
+                <p><strong>Solid (2,900-3,800)</strong></p>
+                <br>
+                <p><strong>Building (2,000-2,900)</strong></p>
+                <br>
+                <p><strong>Starting (0-2,000)</strong></p>
+                <p>Focus on consistent training and gradual improvement</p>
+                <p>Aim for completing the distances at any pace</p>
+                <p>Build up weekly distance gradually</p>
+            `;
         }
 
         // Initialize sliders
