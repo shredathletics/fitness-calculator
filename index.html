@@ -301,49 +301,46 @@
             let genderFactor = (gender === 'female') ? 1.35 : 1.0;
             
             // Calculate individual scores with adjustments
-            // Distance score (max 5000 points)
-            const distanceScore = Math.min(5000, (distance / 100) * 5000);
+            // Distance score (max 2000 points)
+            const distanceScore = Math.min(2000, (distance / 100) * 2000);
             
-            // Rep time score (max 5000 points)
-            // Adjust target times based on age and gender
+            // Rep time score (max 2000 points)
             const adjustedMinRepTime = 75 * ageFactor * genderFactor;
             const adjustedMaxRepTime = 230;
             let repScore;
             if (repTime <= adjustedMinRepTime) {
-                repScore = 5000;
+                repScore = 2000;
             } else {
-                repScore = Math.max(0, Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000));
+                repScore = Math.max(0, Math.min(2000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 2000));
             }
             
-            // Tempo time score (max 5000 points)
-            // Adjust target times based on age and gender
-            const adjustedMinTempoTime = 1380 * ageFactor * genderFactor;
-            const adjustedMaxTempoTime = 3600;
+            // Tempo time score (max 2000 points)
+            const adjustedMinTempoTime = 1380 * ageFactor * genderFactor; // 23min adjusted
+            const adjustedMaxTempoTime = 3600; // 60min
             let tempoScore;
             if (tempoTime <= adjustedMinTempoTime) {
-                tempoScore = 5000;
+                tempoScore = 2000;
             } else {
-                tempoScore = Math.max(0, Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000));
+                tempoScore = Math.max(0, Math.min(2000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 2000));
             }
             
-            // Calculate total score using a weighted geometric mean
-            // This ensures all metrics need to be good for a high score
-            const weightedScore = Math.pow(
-                Math.pow(distanceScore, 0.33) * 
-                Math.pow(repScore, 0.33) * 
-                Math.pow(tempoScore, 0.33),
-                1.4  // Makes it harder to get high scores
-            );
+            // Calculate total score using a balanced approach
+            // Each metric contributes equally, but all must be good for a high score
+            const baseScore = (distanceScore + repScore + tempoScore);
             
-            let totalScore = Math.round(weightedScore);
+            // Apply a penalty if any score is too low (ensures well-rounded fitness)
+            const minScore = Math.min(distanceScore, repScore, tempoScore);
+            const penaltyFactor = Math.pow(minScore / 2000, 0.5); // Sqrt to make penalty less severe
+            
+            let totalScore = Math.round(baseScore * penaltyFactor);
             
             // Ensure score stays within reasonable bounds
-            totalScore = Math.max(0, Math.min(5500, totalScore));  // Changed from 6000 to 5500
+            totalScore = Math.max(0, Math.min(5500, totalScore));
 
             // Update score and category
             document.getElementById('final-score').textContent = totalScore.toLocaleString();
             
-            // Update category text with higher thresholds
+            // Update category text with thresholds
             let category = '';
             if (totalScore >= 5200) category = 'Elite';
             else if (totalScore >= 4200) category = 'Strong';
