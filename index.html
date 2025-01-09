@@ -332,13 +332,13 @@
                 Math.pow(distanceScore, 0.33) * 
                 Math.pow(repScore, 0.33) * 
                 Math.pow(tempoScore, 0.33),
-                1.4  // Increased from 1.2 to 1.4 to make it even harder
+                1.4  // Makes it harder to get high scores
             );
             
             let totalScore = Math.round(weightedScore);
             
             // Ensure score stays within reasonable bounds
-            totalScore = Math.max(0, Math.min(6000, totalScore));
+            totalScore = Math.max(0, Math.min(5500, totalScore));  // Changed from 6000 to 5500
 
             // Update score and category
             document.getElementById('final-score').textContent = totalScore.toLocaleString();
