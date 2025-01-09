@@ -298,29 +298,57 @@
             const repTime = parseInt(document.getElementById('rep-slider').value);
             const tempoMinutes = parseInt(document.getElementById('tempo-minutes').value);
             const tempoSeconds = parseInt(document.getElementById('tempo-seconds').value);
+            const gender = document.getElementById('gender').value;
+            const ageGroup = document.getElementById('age').value;
             
             // Convert tempo time to seconds
             const tempoTime = tempoMinutes * 60 + tempoSeconds;
+
+            // Age-Gender adjustment factors
+            let ageFactor = 1.0;
+            switch(ageGroup) {
+                case 'U30': ageFactor = 1.0; break;
+                case '30-40': ageFactor = 1.05; break;
+                case '40-50': ageFactor = 1.1; break;
+                case '50+': ageFactor = 1.15; break;
+            }
+
+            let genderFactor = (gender === 'female') ? 1.1 : 1.0;
             
-            // Calculate individual scores with extended ranges
+            // Calculate individual scores with adjustments
             // Distance score (max 5000 points)
             const distanceScore = Math.min(5000, (distance / 100) * 5000);
             
             // Rep time score (max 5000 points)
-            // 45s = 5000 points, 180s = 0 points
-            const repScore = Math.min(5000, ((180 - repTime) / (180 - 45)) * 5000);
+            // Adjust target times based on age and gender
+            const adjustedMinRepTime = 45 * ageFactor * genderFactor;
+            const adjustedMaxRepTime = 180;
+            const repScore = Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000);
             
             // Tempo time score (max 5000 points)
-            // 1200s (20min) = 5000 points, 3600s (60min) = 0 points
-            const tempoScore = Math.min(5000, ((3600 - tempoTime) / (3600 - 1200)) * 5000);
+            // Adjust target times based on age and gender
+            const adjustedMinTempoTime = 1200 * ageFactor * genderFactor; // 20min adjusted
+            const adjustedMaxTempoTime = 3600; // 60min
+            const tempoScore = Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000);
             
             // Calculate total score
             let totalScore = Math.round((distanceScore + repScore + tempoScore) / 3);
             
             // Ensure score stays within reasonable bounds
             totalScore = Math.max(1000, Math.min(15000, totalScore));
-            
+
+            // Update score and category
             document.getElementById('final-score').textContent = totalScore.toLocaleString();
+            
+            // Update category text
+            let category = '';
+            if (totalScore >= 12000) category = 'Elite Level';
+            else if (totalScore >= 9000) category = 'Advanced Level';
+            else if (totalScore >= 6000) category = 'Intermediate Level';
+            else if (totalScore >= 3000) category = 'Building Base';
+            else category = 'Just Starting';
+            
+            document.getElementById('category-text').textContent = category;
         }
 
         // Initialize sliders
@@ -353,6 +381,10 @@
             document.getElementById('tempo-value').textContent = formatTime(minutes, this.value);
             calculateFitnessScore();
         });
+
+        // Add listeners for gender and age changes
+        document.getElementById('gender').addEventListener('change', calculateFitnessScore);
+        document.getElementById('age').addEventListener('change', calculateFitnessScore);
 
         // Initial calculation
         calculateFitnessScore();
