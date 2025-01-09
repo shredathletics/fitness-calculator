@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner Fitness Score Calculator</title>
+    <style>
+        :root {
+            --gradient: linear-gradient(90deg, #4ade80 0%, #60a5fa 100%);
+            --bg-main: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --green: #22c55e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: var(--gradient);
+            padding: 2rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .metric-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .metric-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .slider-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #e5e7eb;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 2px solid var(--green);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .slider-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 6px;
+            background: var(--green);
+            border-radius: 3px;
+            pointer-events: none;
+        }
+
+        .metric-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .time-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-input label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-input input {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .fitness-score {
+            background: linear-gradient(to right, #f0fdf4, #eff6ff);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .score-title {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .score-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0ea5e9;
+            margin-bottom: 1rem;
+        }
+
+        .score-levels {
+            text-align: left;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .score-levels p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Beginner Fitness Score Calculator</h1>
+        </header>
+
+        <div class="content">
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h2 class="metric-title">Weekly Distance</h2>
+                    <span class="metric-value" id="distance-value">20 km</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="distance-slider" min="0" max="200" value="20" step="1">
+                    <div class="slider-track"></div>
+                </div>
+                <p class="metric-description">Starting: 0-20km | Building: 20-40km | Advanced: 40-80km | Elite: 80km+</p>
+            </div>
+
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h2 class="metric-title">400m Rep Time</h2>
+                    <span class="metric-value" id="rep-value">120 seconds</span>
+                </div>
+                <div class="slider-container">
+                    <input type="range" class="slider" id="rep-slider" min="45" max="180" value="120" step="1">
+                    <div class="slider-track"></div>
+                </div>
+                <p class="metric-description">Elite: 45-60s | Advanced: 60-75s | Intermediate: 75-90s | Building: 90-120s | Starting: 120s+</p>
+            </div>
+
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h2 class="metric-title">7k Tempo Time</h2>
+                    <span class="metric-value" id="tempo-value">42:00</span>
+                </div>
+                <div class="time-inputs">
+                    <div class="time-input">
+                        <label>Minutes</label>
+                        <input type="number" id="tempo-minutes" min="20" max="60" value="42">
+                    </div>
+                    <div class="time-input">
+                        <label>Seconds</label>
+                        <input type="number" id="tempo-seconds" min="0" max="59" value="0">
+                    </div>
+                </div>
+                <p class="metric-description">Elite: 20:00-25:00 | Advanced: 25:00-30:00 | Intermediate: 30:00-35:00 | Building: 35:00-42:00 | Starting: 42:00+</p>
+            </div>
+
+            <div class="fitness-score">
+                <h2 class="score-title">Your Fitness Score</h2>
+                <div class="score-value" id="final-score">5,000</div>
+                <div class="score-levels">
+                    <p>1,000 - 3,000: Just Starting (You're on your way!)</p>
+                    <p>3,000 - 5,000: Building Base (Great progress!)</p>
+                    <p>5,000 - 7,000: Getting Stronger (Impressive work!)</p>
+                    <p>7,000 - 10,000: Advanced Level (Outstanding performance!)</p>
+                    <p>10,000 - 15,000: Elite Level (Exceptional athlete!)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update sliders and calculate score
+        function updateSliderTrack(slider, track) {
+            const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+            track.style.width = value + '%';
+        }
+
+        function formatTime(minutes, seconds) {
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function calculateFitnessScore() {
+            const distance = parseInt(document.getElementById('distance-slider').value);
+            const repTime = parseInt(document.getElementById('rep-slider').value);
+            const tempoMinutes = parseInt(document.getElementById('tempo-minutes').value);
+            const tempoSeconds = parseInt(document.getElementById('tempo-seconds').value);
+            
+            // Convert tempo time to seconds
+            const tempoTime = tempoMinutes * 60 + tempoSeconds;
+            
+            // Calculate individual scores with extended ranges
+            // Distance score (max 5000 points)
+            const distanceScore = Math.min(5000, (distance / 100) * 5000);
+            
+            // Rep time score (max 5000 points)
+            // 45s = 5000 points, 180s = 0 points
+            const repScore = Math.min(5000, ((180 - repTime) / (180 - 45)) * 5000);
+            
+            // Tempo time score (max 5000 points)
+            // 1200s (20min) = 5000 points, 3600s (60min) = 0 points
+            const tempoScore = Math.min(5000, ((3600 - tempoTime) / (3600 - 1200)) * 5000);
+            
+            // Calculate total score
+            let totalScore = Math.round((distanceScore + repScore + tempoScore) / 3);
+            
+            // Ensure score stays within reasonable bounds
+            totalScore = Math.max(1000, Math.min(15000, totalScore));
+            
+            document.getElementById('final-score').textContent = totalScore.toLocaleString();
+        }
+
+        // Initialize sliders
+        const distanceSlider = document.getElementById('distance-slider');
+        const repSlider = document.getElementById('rep-slider');
+        const distanceTrack = document.querySelector('.slider-track');
+        const repTrack = document.querySelector('.slider-track');
+
+        // Event listeners
+        distanceSlider.addEventListener('input', function() {
+            document.getElementById('distance-value').textContent = this.value + ' km';
+            updateSliderTrack(this, distanceTrack);
+            calculateFitnessScore();
+        });
+
+        repSlider.addEventListener('input', function() {
+            document.getElementById('rep-value').textContent = this.value + ' seconds';
+            updateSliderTrack(this, repTrack);
+            calculateFitnessScore();
+        });
+
+        document.getElementById('tempo-minutes').addEventListener('input', function() {
+            const seconds = document.getElementById('tempo-seconds').value;
+            document.getElementById('tempo-value').textContent = formatTime(this.value, seconds);
+            calculateFitnessScore();
+        });
+
+        document.getElementById('tempo-seconds').addEventListener('input', function() {
+            const minutes = document.getElementById('tempo-minutes').value;
+            document.getElementById('tempo-value').textContent = formatTime(minutes, this.value);
+            calculateFitnessScore();
+        });
+
+        // Initial calculation
+        calculateFitnessScore();
+    </script>
+</body>
+</html> 
