@@ -348,6 +348,9 @@
             else if (totalScore >= 2200) category = 'Building';
             else category = 'Starting';
 
+            // Update the category text display
+            document.getElementById('category-text').textContent = category;
+
             // Update the score ranges display
             const scoreRanges = document.getElementById('score-ranges');
             scoreRanges.innerHTML = `
