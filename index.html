@@ -323,13 +323,23 @@
             // Adjust target times based on age and gender
             const adjustedMinRepTime = 75 * ageFactor * genderFactor;
             const adjustedMaxRepTime = 230;
-            const repScore = Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000);
+            let repScore;
+            if (repTime <= adjustedMinRepTime) {
+                repScore = 5000;  // Perfect score for very fast times
+            } else {
+                repScore = Math.max(0, Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000));
+            }
             
             // Tempo time score (max 5000 points)
             // Adjust target times based on age and gender
             const adjustedMinTempoTime = 3900 * ageFactor * genderFactor;
             const adjustedMaxTempoTime = 5400;
-            const tempoScore = Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000);
+            let tempoScore;
+            if (tempoTime <= adjustedMinTempoTime) {
+                tempoScore = 5000;  // Perfect score for very fast times
+            } else {
+                tempoScore = Math.max(0, Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000));
+            }
             
             // Calculate total score
             let totalScore = Math.round((distanceScore + repScore + tempoScore) / 3);
