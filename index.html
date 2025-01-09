@@ -249,31 +249,31 @@
                 <div class="score-levels">
                     <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
                     <div id="score-ranges">
-                        <p><strong>Elite (5,000+)</strong></p>
+                        <p><strong>Elite (4,200+)</strong></p>
                         <p>Men U30: 60-90s/25:00-35:00 | Women U30: 65-95s/27:00-37:00</p>
                         <p>Men 30-40: 65-95s/27:00-37:00 | Women 30-40: 70-100s/29:00-39:00</p>
                         <p>Men 40-50: 70-100s/29:00-39:00 | Women 40-50: 75-105s/31:00-41:00</p>
                         <p>Men 50+: 75-105s/31:00-41:00 | Women 50+: 80-110s/33:00-43:00</p>
                         <br>
-                        <p><strong>Strong (4,000-5,000)</strong></p>
+                        <p><strong>Strong (3,400-4,200)</strong></p>
                         <p>Men U30: 90-120s/35:00-45:00 | Women U30: 95-125s/37:00-47:00</p>
                         <p>Men 30-40: 95-125s/37:00-47:00 | Women 30-40: 100-130s/39:00-49:00</p>
                         <p>Men 40-50: 100-130s/39:00-49:00 | Women 40-50: 105-135s/41:00-51:00</p>
                         <p>Men 50+: 105-135s/41:00-51:00 | Women 50+: 110-140s/43:00-53:00</p>
                         <br>
-                        <p><strong>Solid (3,000-4,000)</strong></p>
+                        <p><strong>Solid (2,600-3,400)</strong></p>
                         <p>Men U30: 120-150s/45:00-55:00 | Women U30: 125-155s/47:00-57:00</p>
                         <p>Men 30-40: 125-155s/47:00-57:00 | Women 30-40: 130-160s/49:00-59:00</p>
                         <p>Men 40-50: 130-160s/49:00-59:00 | Women 40-50: 135-165s/51:00-61:00</p>
                         <p>Men 50+: 135-165s/51:00-61:00 | Women 50+: 140-170s/53:00-63:00</p>
                         <br>
-                        <p><strong>Building (2,000-3,000)</strong></p>
+                        <p><strong>Building (1,800-2,600)</strong></p>
                         <p>Men U30: 150-180s/55:00-65:00 | Women U30: 155-185s/57:00-67:00</p>
                         <p>Men 30-40: 155-185s/57:00-67:00 | Women 30-40: 160-190s/59:00-69:00</p>
                         <p>Men 40-50: 160-190s/59:00-69:00 | Women 40-50: 165-195s/61:00-71:00</p>
                         <p>Men 50+: 165-195s/61:00-71:00 | Women 50+: 170-200s/63:00-73:00</p>
                         <br>
-                        <p><strong>Starting (0-2,000)</strong></p>
+                        <p><strong>Starting (0-1,800)</strong></p>
                         <p>Focus on consistent training and gradual improvement</p>
                         <p>Aim for completing the distances at any pace</p>
                     </div>
@@ -352,10 +352,10 @@
             
             // Update category text
             let category = '';
-            if (totalScore >= 5000) category = 'Elite';
-            else if (totalScore >= 4000) category = 'Strong';
-            else if (totalScore >= 3000) category = 'Solid';
-            else if (totalScore >= 2000) category = 'Building';
+            if (totalScore >= 4200) category = 'Elite';
+            else if (totalScore >= 3400) category = 'Strong';
+            else if (totalScore >= 2600) category = 'Solid';
+            else if (totalScore >= 1800) category = 'Building';
             else category = 'Starting';
             
             document.getElementById('category-text').textContent = category;
