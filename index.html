@@ -192,13 +192,13 @@
             <div class="metric-group">
                 <div class="metric-header">
                     <h2 class="metric-title">400m Rep Time</h2>
-                    <span class="metric-value" id="rep-value">180 seconds</span>
+                    <span class="metric-value" id="rep-value">120 seconds</span>
                 </div>
                 <div class="slider-container">
-                    <input type="range" class="slider" id="rep-slider" min="150" max="230" value="180" step="1">
+                    <input type="range" class="slider" id="rep-slider" min="75" max="230" value="120" step="1">
                     <div class="slider-track"></div>
                 </div>
-                <p class="metric-description">Enter your average 400m time across 12 reps (150-230 seconds)</p>
+                <p class="metric-description">Enter your average 400m time across 12 reps (75-230 seconds)</p>
             </div>
 
             <div class="metric-group">
@@ -321,7 +321,7 @@
             
             // Rep time score (max 5000 points)
             // Adjust target times based on age and gender
-            const adjustedMinRepTime = 180 * ageFactor * genderFactor;
+            const adjustedMinRepTime = 75 * ageFactor * genderFactor;
             const adjustedMaxRepTime = 230;
             const repScore = Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000);
             
