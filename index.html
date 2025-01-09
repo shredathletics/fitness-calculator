@@ -192,31 +192,31 @@
             <div class="metric-group">
                 <div class="metric-header">
                     <h2 class="metric-title">400m Rep Time</h2>
-                    <span class="metric-value" id="rep-value">120 seconds</span>
+                    <span class="metric-value" id="rep-value">180 seconds</span>
                 </div>
                 <div class="slider-container">
-                    <input type="range" class="slider" id="rep-slider" min="120" max="200" value="150" step="1">
+                    <input type="range" class="slider" id="rep-slider" min="150" max="230" value="180" step="1">
                     <div class="slider-track"></div>
                 </div>
-                <p class="metric-description">Enter your average 400m time across 12 reps (120-200 seconds)</p>
+                <p class="metric-description">Enter your average 400m time across 12 reps (150-230 seconds)</p>
             </div>
 
             <div class="metric-group">
                 <div class="metric-header">
                     <h2 class="metric-title">7k Tempo Time</h2>
-                    <span class="metric-value" id="tempo-value">42:00</span>
+                    <span class="metric-value" id="tempo-value">65:00</span>
                 </div>
                 <div class="time-inputs">
                     <div class="time-input">
                         <label>Minutes</label>
-                        <input type="number" id="tempo-minutes" min="35" max="75" value="50">
+                        <input type="number" id="tempo-minutes" min="45" max="90" value="65">
                     </div>
                     <div class="time-input">
                         <label>Seconds</label>
                         <input type="number" id="tempo-seconds" min="0" max="59" value="0">
                     </div>
                 </div>
-                <p class="metric-description">Enter your 7k tempo run time (35:00-75:00)</p>
+                <p class="metric-description">Enter your 7k tempo run time (45:00-90:00)</p>
             </div>
 
             <div class="metric-group">
@@ -250,28 +250,28 @@
                     <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
                     <div id="score-ranges">
                         <p><strong>Elite Level (12,000-15,000)</strong></p>
-                        <p>Men U30: 135s/50:00 | Women U30: 140s/52:00</p>
-                        <p>Men 30-40: 140s/52:00 | Women 30-40: 145s/54:00</p>
-                        <p>Men 40-50: 145s/54:00 | Women 40-50: 150s/56:00</p>
-                        <p>Men 50+: 150s/56:00 | Women 50+: 155s/58:00</p>
-                        <br>
-                        <p><strong>Advanced Level (9,000-12,000)</strong></p>
-                        <p>Men U30: 150s/55:00 | Women U30: 155s/57:00</p>
-                        <p>Men 30-40: 155s/57:00 | Women 30-40: 160s/59:00</p>
-                        <p>Men 40-50: 160s/59:00 | Women 40-50: 165s/61:00</p>
-                        <p>Men 50+: 165s/61:00 | Women 50+: 170s/63:00</p>
-                        <br>
-                        <p><strong>Intermediate Level (6,000-9,000)</strong></p>
-                        <p>Men U30: 165s/60:00 | Women U30: 170s/62:00</p>
-                        <p>Men 30-40: 170s/62:00 | Women 30-40: 175s/64:00</p>
-                        <p>Men 40-50: 175s/64:00 | Women 40-50: 180s/66:00</p>
-                        <p>Men 50+: 180s/66:00 | Women 50+: 185s/68:00</p>
-                        <br>
-                        <p><strong>Building Base (3,000-6,000)</strong></p>
                         <p>Men U30: 180s/65:00 | Women U30: 185s/67:00</p>
                         <p>Men 30-40: 185s/67:00 | Women 30-40: 190s/69:00</p>
                         <p>Men 40-50: 190s/69:00 | Women 40-50: 195s/71:00</p>
                         <p>Men 50+: 195s/71:00 | Women 50+: 200s/73:00</p>
+                        <br>
+                        <p><strong>Advanced Level (9,000-12,000)</strong></p>
+                        <p>Men U30: 190s/70:00 | Women U30: 195s/72:00</p>
+                        <p>Men 30-40: 195s/72:00 | Women 30-40: 200s/74:00</p>
+                        <p>Men 40-50: 200s/74:00 | Women 40-50: 205s/76:00</p>
+                        <p>Men 50+: 205s/76:00 | Women 50+: 210s/78:00</p>
+                        <br>
+                        <p><strong>Intermediate Level (6,000-9,000)</strong></p>
+                        <p>Men U30: 200s/75:00 | Women U30: 205s/77:00</p>
+                        <p>Men 30-40: 205s/77:00 | Women 30-40: 210s/79:00</p>
+                        <p>Men 40-50: 210s/79:00 | Women 40-50: 215s/81:00</p>
+                        <p>Men 50+: 215s/81:00 | Women 50+: 220s/83:00</p>
+                        <br>
+                        <p><strong>Building Base (3,000-6,000)</strong></p>
+                        <p>Men U30: 210s/80:00 | Women U30: 215s/82:00</p>
+                        <p>Men 30-40: 215s/82:00 | Women 30-40: 220s/84:00</p>
+                        <p>Men 40-50: 220s/84:00 | Women 40-50: 225s/86:00</p>
+                        <p>Men 50+: 225s/86:00 | Women 50+: 230s/88:00</p>
                         <br>
                         <p><strong>Just Starting (1,000-3,000)</strong></p>
                         <p>Focus on consistent training and gradual improvement</p>
@@ -321,14 +321,14 @@
             
             // Rep time score (max 5000 points)
             // Adjust target times based on age and gender
-            const adjustedMinRepTime = 135 * ageFactor * genderFactor;
-            const adjustedMaxRepTime = 200;
+            const adjustedMinRepTime = 180 * ageFactor * genderFactor;
+            const adjustedMaxRepTime = 230;
             const repScore = Math.min(5000, ((adjustedMaxRepTime - repTime) / (adjustedMaxRepTime - adjustedMinRepTime)) * 5000);
             
             // Tempo time score (max 5000 points)
             // Adjust target times based on age and gender
-            const adjustedMinTempoTime = 3000 * ageFactor * genderFactor;
-            const adjustedMaxTempoTime = 4500;
+            const adjustedMinTempoTime = 3900 * ageFactor * genderFactor;
+            const adjustedMaxTempoTime = 5400;
             const tempoScore = Math.min(5000, ((adjustedMaxTempoTime - tempoTime) / (adjustedMaxTempoTime - adjustedMinTempoTime)) * 5000);
             
             // Calculate total score
