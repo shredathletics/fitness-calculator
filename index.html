@@ -249,15 +249,15 @@
                 <div class="score-levels">
                     <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
                     <div id="score-ranges">
-                        <p><strong>Elite (4,800+)</strong></p>
+                        <p><strong>Elite (5,200+)</strong></p>
                         <br>
-                        <p><strong>Strong (3,800-4,800)</strong></p>
+                        <p><strong>Strong (4,200-5,200)</strong></p>
                         <br>
-                        <p><strong>Solid (2,900-3,800)</strong></p>
+                        <p><strong>Solid (3,200-4,200)</strong></p>
                         <br>
-                        <p><strong>Building (2,000-2,900)</strong></p>
+                        <p><strong>Building (2,200-3,200)</strong></p>
                         <br>
-                        <p><strong>Starting (0-2,000)</strong></p>
+                        <p><strong>Starting (0-2,200)</strong></p>
                         <p>Focus on consistent training and gradual improvement</p>
                         <p>Aim for completing the distances at any pace</p>
                         <p>Build up weekly distance gradually</p>
@@ -332,7 +332,7 @@
                 Math.pow(distanceScore, 0.33) * 
                 Math.pow(repScore, 0.33) * 
                 Math.pow(tempoScore, 0.33),
-                1.2  // Power > 1 makes it harder to get high scores
+                1.4  // Increased from 1.2 to 1.4 to make it even harder
             );
             
             let totalScore = Math.round(weightedScore);
@@ -345,24 +345,24 @@
             
             // Update category text with higher thresholds
             let category = '';
-            if (totalScore >= 4800) category = 'Elite';
-            else if (totalScore >= 3800) category = 'Strong';
-            else if (totalScore >= 2900) category = 'Solid';
-            else if (totalScore >= 2000) category = 'Building';
+            if (totalScore >= 5200) category = 'Elite';
+            else if (totalScore >= 4200) category = 'Strong';
+            else if (totalScore >= 3200) category = 'Solid';
+            else if (totalScore >= 2200) category = 'Building';
             else category = 'Starting';
 
             // Update the score ranges display
             const scoreRanges = document.getElementById('score-ranges');
             scoreRanges.innerHTML = `
-                <p><strong>Elite (4,800+)</strong></p>
+                <p><strong>Elite (5,200+)</strong></p>
                 <br>
-                <p><strong>Strong (3,800-4,800)</strong></p>
+                <p><strong>Strong (4,200-5,200)</strong></p>
                 <br>
-                <p><strong>Solid (2,900-3,800)</strong></p>
+                <p><strong>Solid (3,200-4,200)</strong></p>
                 <br>
-                <p><strong>Building (2,000-2,900)</strong></p>
+                <p><strong>Building (2,200-3,200)</strong></p>
                 <br>
-                <p><strong>Starting (0-2,000)</strong></p>
+                <p><strong>Starting (0-2,200)</strong></p>
                 <p>Focus on consistent training and gradual improvement</p>
                 <p>Aim for completing the distances at any pace</p>
                 <p>Build up weekly distance gradually</p>
