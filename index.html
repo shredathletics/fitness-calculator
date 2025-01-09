@@ -198,13 +198,7 @@
                     <input type="range" class="slider" id="rep-slider" min="45" max="180" value="120" step="1">
                     <div class="slider-track"></div>
                 </div>
-                <div class="metric-description">
-                    Elite Men: 45-55s | Elite Women: 50-60s |
-                    Advanced Men: 55-70s | Advanced Women: 60-75s |
-                    Intermediate Men: 70-85s | Intermediate Women: 75-90s |
-                    Building Men: 85-105s | Building Women: 90-110s |
-                    Starting Men: 105s+ | Starting Women: 110s+
-                </div>
+                <p class="metric-description">Enter your best 400m repeat time (45-180 seconds)</p>
             </div>
 
             <div class="metric-group">
@@ -222,14 +216,30 @@
                         <input type="number" id="tempo-seconds" min="0" max="59" value="0">
                     </div>
                 </div>
-                <div class="metric-description">
-                    Elite Men U30: 20:00-24:00 | Elite Women U30: 22:00-26:00 |
-                    Elite Men 30-40: 22:00-26:00 | Elite Women 30-40: 24:00-28:00 |
-                    Elite Men 40+: 24:00-28:00 | Elite Women 40+: 26:00-30:00 |
-                    Advanced Men: 28:00-32:00 | Advanced Women: 30:00-34:00 |
-                    Intermediate: 32:00-38:00 |
-                    Building: 38:00-45:00 |
-                    Starting: 45:00+
+                <p class="metric-description">Enter your 7k tempo run time (20:00-60:00)</p>
+            </div>
+
+            <div class="metric-group">
+                <div class="metric-header">
+                    <h2 class="metric-title">Your Details</h2>
+                </div>
+                <div class="time-inputs">
+                    <div class="time-input">
+                        <label>Gender</label>
+                        <select id="gender" style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="time-input">
+                        <label>Age Group</label>
+                        <select id="age" style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="U30">Under 30</option>
+                            <option value="30-40">30-40</option>
+                            <option value="40-50">40-50</option>
+                            <option value="50+">50+</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -237,11 +247,36 @@
                 <h2 class="score-title">Your Fitness Score</h2>
                 <div class="score-value" id="final-score">5,000</div>
                 <div class="score-levels">
-                    <p>1,000 - 3,000: Just Starting (You're on your way!)</p>
-                    <p>3,000 - 5,000: Building Base (Great progress!)</p>
-                    <p>5,000 - 7,000: Getting Stronger (Impressive work!)</p>
-                    <p>7,000 - 10,000: Advanced Level (Outstanding performance!)</p>
-                    <p>10,000 - 15,000: Elite Level (Exceptional athlete!)</p>
+                    <h3 style="margin: 1rem 0; color: var(--text-primary);">Your Category: <span id="category-text">Building Base</span></h3>
+                    <div id="score-ranges">
+                        <p><strong>Elite Level (12,000-15,000)</strong></p>
+                        <p>Men U30: 45s/20:00 | Women U30: 50s/22:00</p>
+                        <p>Men 30-40: 48s/22:00 | Women 30-40: 53s/24:00</p>
+                        <p>Men 40-50: 51s/24:00 | Women 40-50: 56s/26:00</p>
+                        <p>Men 50+: 54s/26:00 | Women 50+: 59s/28:00</p>
+                        <br>
+                        <p><strong>Advanced Level (9,000-12,000)</strong></p>
+                        <p>Men U30: 55s/25:00 | Women U30: 60s/27:00</p>
+                        <p>Men 30-40: 58s/27:00 | Women 30-40: 63s/29:00</p>
+                        <p>Men 40-50: 61s/29:00 | Women 40-50: 66s/31:00</p>
+                        <p>Men 50+: 64s/31:00 | Women 50+: 69s/33:00</p>
+                        <br>
+                        <p><strong>Intermediate Level (6,000-9,000)</strong></p>
+                        <p>Men U30: 75s/32:00 | Women U30: 80s/34:00</p>
+                        <p>Men 30-40: 78s/34:00 | Women 30-40: 83s/36:00</p>
+                        <p>Men 40-50: 81s/36:00 | Women 40-50: 86s/38:00</p>
+                        <p>Men 50+: 84s/38:00 | Women 50+: 89s/40:00</p>
+                        <br>
+                        <p><strong>Building Base (3,000-6,000)</strong></p>
+                        <p>Men U30: 95s/40:00 | Women U30: 100s/42:00</p>
+                        <p>Men 30-40: 98s/42:00 | Women 30-40: 103s/44:00</p>
+                        <p>Men 40-50: 101s/44:00 | Women 40-50: 106s/46:00</p>
+                        <p>Men 50+: 104s/46:00 | Women 50+: 109s/48:00</p>
+                        <br>
+                        <p><strong>Just Starting (1,000-3,000)</strong></p>
+                        <p>Focus on consistent training and gradual improvement</p>
+                        <p>Aim for completing the distances at any pace</p>
+                    </div>
                 </div>
             </div>
         </div>
